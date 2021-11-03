@@ -1,17 +1,15 @@
 function setup() {
-  createCanvas(400, 400, WEBGL);
+  createCanvas(400, 400);
 }
 
 function draw() {
-  background(220);
-  cone()
-  rotateX(45)
-  cone()
-    rotateX(45)
-  cone()
-    rotateX(45)
-  cone()
-    rotateX(45)
-  cone()
+  background(240);
+  let words = "Hello World"
+  text("X: "+ mouseX, 0, height/4);
+  text("Y: "+ mouseY, 0, height/2);
+  if(mouseIsPressed) {
+    words = "Pressed"
+
+  }
+  text(words, height/2, width/2)
 }
- 
