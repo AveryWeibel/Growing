@@ -1,15 +1,26 @@
 function setup() {
   createCanvas(400, 400);
+  newText = new Text("Hello World", new Vector2(width/2, height/2))
+  mousePositionText = new Text("", new Vector2(50, 150));
+  myBox = new DragBox(new Vector2(100, 200), new Vector2(100, 100), new Vector2(0.5, 0.5));
 }
 
 function draw() {
   background(240);
-  let words = "Hello World"
-  text("X: "+ mouseX, 0, height/4);
-  text("Y: "+ mouseY, 0, height/2);
-  if(mouseIsPressed) {
-    words = "Pressed"
+  mousePosition = new Vector2(mouseX, mouseY)
+  mousePositionText.currentWords = "X: " + mousePosition.x + "\nY: " + mousePosition.y
 
+  if(mouseIsPressed) {
+    newText.currentWords = "Pressed"
+
+    if(myBox.CheckOverlap(mousePosition) == true) {
+      newText.currentWords = "Overlap"      
+      myBox.position = mousePosition
+    }
   }
-  text(words, height/2, width/2)
+  
+  myBox.Render();
+  newText.Render();
+  mousePositionText.Render()
+
 }
