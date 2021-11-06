@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1024, 512);
   newText = new Text("Hello World", new Vector2(width/2, height/2))
   mousePositionText = new Text("", new Vector2(50, 150));
   myBox = new DragBox(new Vector2(100, 200), new Vector2(100, 100), new Vector2(0.5, 0.5));
