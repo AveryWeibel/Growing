@@ -4,4 +4,9 @@ class Rectangle extends GameObject {
         rect(this.position.x - this.origin.x, this.position.y - this.origin.y, this.dimensions.x, this.dimensions.y)
     }
 
+    HoldAtPoint (InPosition) {
+        this.position = InPosition
+        console.log("Print from Rectangle")
+    }
+
 }
