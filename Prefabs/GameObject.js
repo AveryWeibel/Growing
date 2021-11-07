@@ -4,10 +4,15 @@ class GameObject {
         this.position = _position
         this.origin = new Vector2(_dimensions.x * _origin.x, _dimensions.y * _origin.y)
         this.held = false
-        this.snapBack = true;
+        this.snapBack = false;
         this.holdPosition = this.position
         this.snapBackPosition = this.position
         this.snapBackDirection = this.position
+        this.snapBackDistance = 0
+        this.speed = 5
+        this.easeCoeff = 0
+        this.easeMin = .56
+        this.easeThreshold = 50
     }
 
     CheckOverlapPoint(InPosition) {
@@ -38,17 +43,33 @@ class GameObject {
         this.snapBack = state        
     }
 
+    StepSnapBack() {
+        let curDistance = this.position.distance(this.snapBackPosition)
+        this.snapBackDirection = this.snapBackPosition.minus(this.position)
+        this.snapBackDirection.normalize()
+        this.easeCoeff = this.easeMin + this.speed * (curDistance * 4.5 / this.snapBackDistance)
+        this.position = this.position.plus(this.snapBackDirection.times(this.easeCoeff))
+    }
+
     Update () {
 
         if (this.held) {
             this.position = this.holdPosition
         }
         else if (this.snapBack) {
-            this.position = this.snapBackDirection.plus(this.position)
-            this.snapBackDirection = this.snapBackPosition.minus(this.position)
-            this.holdPosition = this.position
-        }
+             if(this.snapBackDistance == 0)
+                 this.snapBackDistance = this.position.distance(this.snapBackPosition)
 
+            this.StepSnapBack()
+            this.holdPosition = this.position
+
+            if(this.position.distance(this.snapBackPosition) < this.easeCoeff) {
+                console.log("Returned")
+                this.snapBack = false;
+                this.snapBackDistance = 0
+                this.position = this.snapBackPosition
+            }
+        }
 
     }
     

@@ -13,6 +13,7 @@ function setup() {
   //Create game variables
   this.overlapObjectLock = false
   this.overlapObject = null
+  this.holdObject = null
 
   //Setup overlappable objects
   GameObjects = [box1, box2, box3, sunSprite]
@@ -44,14 +45,9 @@ function draw() {
 
   if(mouseIsPressed) {
     this.newText.currentWords = "Pressed"
-    if(this.overlapObject != null) {
-      this.overlapObject.holdPosition = mousePosition
+    if(this.holdObject != null) {
+      this.holdObject.holdPosition = mousePosition
     }
-  }
-
-  //Transform overlap object if it is clicked on
-  if(this.overlapObject != null) {
-
   }
 
   //Render
@@ -63,17 +59,18 @@ function draw() {
 
 function mousePressed() {
   newText.currentWords = "Pressed"
-  if (this.overlapObject.CheckOverlapPoint(mousePosition)) {
-    this.overlapObject.SetSnap(false)
-    this.overlapObject.SetHold(true, mousePosition)
+  if (this.overlapObject != null && this.overlapObject.CheckOverlapPoint(mousePosition)) {
+    this.holdObject = this.overlapObject
+    this.holdObject.SetSnap(false)
+    this.holdObject.SetHold(true, mousePosition)
   }
 }
 
 function mouseReleased() {
   this.newText.currentWords = "Released"
-  if(this.overlapObject != null) {
-    this.overlapObject.SetSnap(true)
-    this.overlapObject.SetHold(false, mousePosition)
-    this.overlapObject = null
+  if(this.holdObject != null) {
+    this.holdObject.SetSnap(true)
+    this.holdObject.SetHold(false, mousePosition)
+    this.holdObject = null
   }
 }
