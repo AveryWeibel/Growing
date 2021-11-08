@@ -38,7 +38,7 @@ function draw() {
   GameObjects.forEach(obj => {
     if(!mouseIsPressed && obj.CheckOverlapPoint(mousePosition)) {
       this.newText.currentWords = "Overlap"
-      this.overlapObject = obj
+        this.overlapObject = obj
     }
   });
 
@@ -57,6 +57,19 @@ function draw() {
 
 }
 
+function RectOverlapCheck (InRect) {
+    //Rect Overlap checking
+    console.log("Check Rect Overlap")
+    GameObjects.forEach(obj => {
+      if(obj != InRect) {
+        if(obj.CheckOverlapRect(InRect)) {
+          console.log("Found Rect Overlap")
+          return
+        }
+      }
+    });
+}
+
 function mousePressed() {
   newText.currentWords = "Pressed"
   if (this.overlapObject != null && this.overlapObject.CheckOverlapPoint(mousePosition)) {
@@ -68,7 +81,8 @@ function mousePressed() {
 
 function mouseReleased() {
   this.newText.currentWords = "Released"
-  if(this.holdObject != null) {
+  if(this.holdObject != null) {    
+    RectOverlapCheck(this.holdObject)
     this.holdObject.SetSnap(true)
     this.holdObject.SetHold(false, mousePosition)
     this.holdObject = null
