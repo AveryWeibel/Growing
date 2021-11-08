@@ -82,7 +82,7 @@ function mousePressed() {
 
 function mouseReleased() {
   this.newText.currentWords = "Released"
-  if(this.holdObject != null) {    
+  if(this.holdObject != null) {
     RectOverlapCheck(this.holdObject)
     this.holdObject.SetSnap(true)
     this.holdObject.SetHold(false, mousePosition)
