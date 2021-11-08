@@ -5,6 +5,14 @@ class Rectangle extends GameObject {
         this.color = _color
     }
 
+    SetTint(newColor) {
+        this.SetColor(newColor)
+    }
+
+    SetColor(newColor) {
+        this.color = newColor
+    }
+
     Render() {
         fill(this.color)
         rect(this.position.x - this.origin.x, this.position.y - this.origin.y, this.dimensions.x, this.dimensions.y)

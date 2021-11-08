@@ -5,7 +5,14 @@ class Sprite extends GameObject {
         this.tint = _tint
     }
 
-    SetTint
+    SetTint(newColor) {
+        this.tint = newColor
+    }
+
+    SetColor(newColor) {
+        this.SetTint(newColor)
+
+    }
 
     SetSprite(newImg) {
         this.image = newImg

@@ -33,8 +33,8 @@ class GameObject {
     }
 
     CheckOverlapRect(InRect) {
-        return (abs((this.position.x - this.origin.x) - (InRect.position.x - this.origin.x)) * 2 < this.dimensions.x + InRect.dimensions.x) &&
-               (abs((this.position.y - this.origin.y) - (InRect.position.y - this.origin.y)) * 2 < this.dimensions.y + InRect.dimensions.y)
+        return (abs(( (this.position.x - this.origin.x)  - (InRect.position.x - InRect.origin.x) ) ) * 2 < this.dimensions.x + InRect.dimensions.x) &&
+               (abs(( (this.position.y - this.origin.y) -  (InRect.position.y - InRect.origin.y) ) ) * 2 < this.dimensions.y + InRect.dimensions.y)
     }
 
     SetHold(state) {

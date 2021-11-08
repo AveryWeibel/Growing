@@ -3,9 +3,9 @@ function setup() {
   createCanvas(1024, 512);
   this.newText = new Text("Hello World", new Vector2(width/2, height/2))
   mousePositionText = new Text("", (50, 150));
-  box1 = new Rectangle(new Vector2(50, 50), new Vector2(100, 100), new Vector2(0.5, 0.5));
-  box2 = new Rectangle(new Vector2(50, 50), new Vector2(200, 300), new Vector2(0.5, 0.5));
-  box3 = new Rectangle(new Vector2(50, 50), new Vector2(800, 500), new Vector2(0.5, 0.5));
+  box1 = new Rectangle(new Vector2(127, 127), new Vector2(100, 100), new Vector2(0.2, 0.8));
+  box2 = new Rectangle(new Vector2(127, 127), new Vector2(200, 300), new Vector2(0.5, 0.5));
+  box3 = new Rectangle(new Vector2(127, 127), new Vector2(800, 500), new Vector2(0.5, 0.5));
   sunSprite = new Sprite(sunImage, new Vector2(200, 200), new Vector2(0.5, 0.5))
   backgroundSprite = new Sprite(backgroundImage, new Vector2(0, 0))
 
@@ -47,6 +47,7 @@ function draw() {
     this.newText.currentWords = "Pressed"
     if(this.holdObject != null) {
       this.holdObject.holdPosition = mousePosition
+      RectOverlapCheck(this.holdObject)
     }
   }
 
@@ -59,11 +60,11 @@ function draw() {
 
 function RectOverlapCheck (InRect) {
     //Rect Overlap checking
-    console.log("Check Rect Overlap")
+    InRect.SetTint(color(255,255,255))
     GameObjects.forEach(obj => {
       if(obj != InRect) {
         if(obj.CheckOverlapRect(InRect)) {
-          console.log("Found Rect Overlap")
+          InRect.SetTint(color(55,255,255))
           return
         }
       }
