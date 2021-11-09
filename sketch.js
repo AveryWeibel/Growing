@@ -37,6 +37,7 @@ function setup() {
 function AddCreature(creature) {
   console.log("Add creature")
   renderableObjects.splice(5, 0, creature)
+  GameObjects.push(creature)
 }
 
 function draw() {

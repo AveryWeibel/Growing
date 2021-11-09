@@ -60,7 +60,7 @@ class Plot extends Sprite {
 
         if(this.state == this.plotState.PLANTED && tags.find(tag => tag == "WateringCan")) {
 
-            AddCreature(new Creature(blueGhost, new Vector2(580, 230)))
+            AddCreature(new Creature(blueGhost, new Vector2(580, 230), new Vector2(0.5, 0.5)))
 
             this.state = this.plotState.EMPTY
             this.UpdateFromState()
