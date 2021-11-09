@@ -53,8 +53,16 @@ class Plot extends Sprite {
     HandleRectOverlap(InRect) {
         let tags = InRect.tags
 
-        if(tags.find(tag => tag == "BlueSeed")) {
+        if(this.state == this.plotState.EMPTY && tags.find(tag => tag == "BlueSeed")) {
             this.state = this.plotState.PLANTED
+            this.UpdateFromState()
+        }
+
+        if(this.state == this.plotState.PLANTED && tags.find(tag => tag == "WateringCan")) {
+
+            AddCreature(new Creature(blueGhost, new Vector2(580, 230)))
+
+            this.state = this.plotState.EMPTY
             this.UpdateFromState()
         }
 

@@ -2,7 +2,6 @@ function setup() {
   //Create gameobjects
   var cnv = createCanvas(1024, 512);
   frameRate(144)
-  this.newText = new Text("Hello World", new Vector2(width/2, height/2))
   sunSprite = new Sprite(sunImage, new Vector2(105,95), new Vector2(0.5, 0.5))
   backgroundSprite = new Sprite(backgroundImage, new Vector2(0, 0))
   backgroundSkySprite = new Sprite(backgroundSky, new Vector2(0, 0))
@@ -20,7 +19,7 @@ function setup() {
 
   fenceSprite = new Sprite(fence, new Vector2(0, 90))
 
-  wateringCanSprite = new Sprite(wateringCan, new Vector2(880, 170), new Vector2(.5, .5))
+  wateringCanSprite = new Sprite(wateringCan, new Vector2(450, 240), new Vector2(.5, .5))
   wateringCanSprite.tags.push("WateringCan")
 
   //Create game variables
@@ -32,7 +31,12 @@ function setup() {
   GameObjects = [sunSprite, plotDirt1, blueSeedSprite, topBarrelSprite, wateringCanSprite]
 
   //Setup renderable
-  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, wateringCanSprite, this.newText, vignetteSprite]
+  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, wateringCanSprite, vignetteSprite]
+}
+
+function AddCreature(creature) {
+  console.log("Add creature")
+  renderableObjects.splice(5, 0, creature)
 }
 
 function draw() {
@@ -53,7 +57,6 @@ function draw() {
   //Overlap checking
   GameObjects.forEach(obj => {
     if(!mouseIsPressed && obj.CheckOverlapPoint(mousePosition)) {
-      this.newText.currentWords = "Overlap"
         obj.SetTint(220, 220, 220)
         this.overlapObject = obj
     }
@@ -61,7 +64,6 @@ function draw() {
 
 
   if(mouseIsPressed) {
-    this.newText.currentWords = "Pressed"
     if(this.holdObject != null) {
       this.holdObject.holdPosition = mousePosition
       //RectOverlapCheck(this.holdObject)
@@ -81,7 +83,6 @@ function RectOverlapCheck (InRect) {
     GameObjects.forEach(obj => {
       if(obj != InRect) {
         if(obj.CheckOverlapRect(InRect)) {
-          InRect.SetTint(color(55,255,255))
           obj.HandleRectOverlap(InRect);
           return true
         }
@@ -91,7 +92,6 @@ function RectOverlapCheck (InRect) {
 }
 
 function mousePressed() {
-  newText.currentWords = "Pressed"
   if (this.overlapObject != null && !this.overlapObject.locked && this.overlapObject.CheckOverlapPoint(mousePosition)) {
     this.holdObject = this.overlapObject
     this.holdObject.SetSnap(false)
@@ -100,7 +100,6 @@ function mousePressed() {
 }
 
 function mouseReleased() {
-  this.newText.currentWords = "Released"
   if(this.holdObject != null) {
     RectOverlapCheck(this.holdObject)
     this.holdObject.SetSnap(true)
