@@ -26,6 +26,12 @@ class Creature extends Sprite {
         this.holdPosition = this.position
     }
 
+    HandleDrop() {
+        this.snapBack = false;       
+        this.wanderPosition = this.position
+        this.ResetWander()
+    }
+
     Update () {
 
         if (this.held) {

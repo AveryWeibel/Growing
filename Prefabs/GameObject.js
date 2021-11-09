@@ -51,6 +51,13 @@ class GameObject {
         this.held = state;
         if(state)
             this.position = this.holdPosition
+        else {
+            this.HandleDrop()
+        }
+    }
+
+    HandleDrop() {
+        console.log("Dropped")
     }
 
     SetSnap(state) {
