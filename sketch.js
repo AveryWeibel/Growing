@@ -11,10 +11,14 @@ function setup() {
   botBarrelSprite = new Sprite(botBarrel, new Vector2(280, 370))
 
   blueSeedSprite = new Sprite(blueSeed, new Vector2(360, 230), new Vector2(0.5, 0.5))
+  blueSeedSprite.SetVisible(false)
+  blueSeedSprite.tags.push("BlueSeed")
   topBarrelSprite = new Barrel(topBarrel, new Vector2(280, 180), new Vector2(0, 0), color(255, 255, 255), blueSeedSprite)
 
+  plotDirt1 = new Plot(plotDirt, new Vector2(580, 230), new Vector2(0, 0), color(255, 255, 255))
+  plotDirt1.SetLocked(true)
+
   fenceSprite = new Sprite(fence, new Vector2(0, 90))
-  blueSeedSprite.SetVisible(false)
 
 
   //Create game variables
@@ -23,10 +27,10 @@ function setup() {
   this.holdObject = null
 
   //Setup overlappable objects
-  GameObjects = [sunSprite, blueSeedSprite, topBarrelSprite]
+  GameObjects = [sunSprite, plotDirt1, blueSeedSprite, topBarrelSprite]
 
   //Setup renderable
-  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, this.newText, vignetteSprite]
+  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, this.newText, vignetteSprite]
 }
 
 function draw() {
@@ -58,7 +62,7 @@ function draw() {
     this.newText.currentWords = "Pressed"
     if(this.holdObject != null) {
       this.holdObject.holdPosition = mousePosition
-      //ectOverlapCheck(this.holdObject)
+      //RectOverlapCheck(this.holdObject)
     }
   }
 
@@ -76,15 +80,17 @@ function RectOverlapCheck (InRect) {
       if(obj != InRect) {
         if(obj.CheckOverlapRect(InRect)) {
           InRect.SetTint(color(55,255,255))
-          return
+          obj.HandleRectOverlap(InRect);
+          return true
         }
       }
     });
+    return false
 }
 
 function mousePressed() {
   newText.currentWords = "Pressed"
-  if (this.overlapObject != null && this.overlapObject.CheckOverlapPoint(mousePosition)) {
+  if (this.overlapObject != null && !this.overlapObject.locked && this.overlapObject.CheckOverlapPoint(mousePosition)) {
     this.holdObject = this.overlapObject
     this.holdObject.SetSnap(false)
     this.holdObject.SetHold(true, mousePosition)

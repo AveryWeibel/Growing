@@ -34,8 +34,16 @@ class GameObject {
     }
 
     CheckOverlapRect(InRect) {
-        return (abs(( (this.position.x - this.origin.x)  - (InRect.position.x - InRect.origin.x) ) ) * 2 < this.dimensions.x + InRect.dimensions.x) &&
-               (abs(( (this.position.y - this.origin.y) -  (InRect.position.y - InRect.origin.y) ) ) * 2 < this.dimensions.y + InRect.dimensions.y)
+        let res = (abs(( (this.position.x - this.origin.x)  - (InRect.position.x - InRect.origin.x) ) ) * 2 < this.dimensions.x + InRect.dimensions.x) &&
+                  (abs(( (this.position.y - this.origin.y) -  (InRect.position.y - InRect.origin.y) ) ) * 2 < this.dimensions.y + InRect.dimensions.y)
+        if(res)
+            this.HandleRectOverlap(InRect)
+
+        return res
+    }
+
+    HandleRectOverlap(InRect) {
+        console.log("Overlap obj")
     }
 
     SetHold(state) {

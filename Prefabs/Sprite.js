@@ -4,6 +4,8 @@ class Sprite extends GameObject {
         this.image = _image
         this.tint = _tint
         this.visible = true
+
+        this.tags = []
     }
 
     SetTint(newColor) {
