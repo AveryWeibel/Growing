@@ -7,6 +7,7 @@ class Text {
     }
 
     Render() {
+        fill(color(0,0,0))
         text(this.currentWords, this.position.x, this.position.y)
         this.currentWords = this.originalWords
     }

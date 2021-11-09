@@ -3,6 +3,7 @@ class Sprite extends GameObject {
         super(new Vector2(_image.width, _image.height), _position, _origin)
         this.image = _image
         this.tint = _tint
+        this.visible = true
     }
 
     SetTint(newColor) {
@@ -14,12 +15,18 @@ class Sprite extends GameObject {
 
     }
 
+    SetVisible(state) {
+        this.visible = state
+    }
+
     SetSprite(newImg) {
         this.image = newImg
     }
 
     Render() {
-        tint(this.tint)
-        image(this.image, this.position.x - this.origin.x, this.position.y - this.origin.y)
+        if(this.visible) {
+            tint(this.tint)
+            image(this.image, this.position.x - this.origin.x, this.position.y - this.origin.y)
+        }
     }
 }

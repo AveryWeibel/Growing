@@ -5,6 +5,7 @@ class GameObject {
         this.origin = new Vector2(_dimensions.x * _origin.x, _dimensions.y * _origin.y)
         this.held = false
         this.snapBack = false;
+        this.locked = false
         this.holdPosition = this.position
         this.snapBackPosition = this.position
         this.snapBackDirection = this.position
@@ -48,12 +49,24 @@ class GameObject {
         this.snapBack = state        
     }
 
+    SetLocked(state) {
+        this.locked = state
+    }
+
     StepSnapBack() {
         let curDistance = this.position.distance(this.snapBackPosition)
         this.snapBackDirection = this.snapBackPosition.minus(this.position)
         this.snapBackDirection.normalize()
         this.easeCoeff = this.easeMin + this.speed * (curDistance * 4.5 / this.snapBackDistance)
         this.position = this.position.plus(this.snapBackDirection.times(this.easeCoeff))
+    }
+
+    ResetSnap() {
+        console.log("Returned")
+        this.snapBack = false;
+        this.snapBackDistance = 0
+        this.position = this.snapBackPosition
+        this.holdPosition = this.position
     }
 
     Update () {
@@ -69,10 +82,7 @@ class GameObject {
             this.holdPosition = this.position
 
             if(this.position.distance(this.snapBackPosition) < this.easeCoeff) {
-                console.log("Returned")
-                this.snapBack = false;
-                this.snapBackDistance = 0
-                this.position = this.snapBackPosition
+                this.ResetSnap()
             }
         }
 
