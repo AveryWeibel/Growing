@@ -32,6 +32,20 @@ function setup() {
 
   //Setup renderable
   renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, wateringCanSprite, vignetteSprite]
+
+  //Setup creature sprite arrays
+  blueCreatureSprites = [blueGhost]
+  pinkCreatureSprites = [blueGhost]
+  yellowCreatureSprites = [blueGhost]
+  
+}
+
+function GetRandomCreatureSprite(type) {
+  switch (type) {
+    case "Blue":
+      console.log("Get blue creature sprite")
+      return blueCreatureSprites.at(random(blueCreatureSprites.length))
+  }
 }
 
 function AddCreature(creature) {

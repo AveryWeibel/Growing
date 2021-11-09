@@ -31,6 +31,6 @@ blueSeed = loadImage('Images/BlueSeed.png')
 plotDirt = loadImage('Images/PlotDirt.png')
 plotFace = loadImage('Images/PlotFace.png')
 plotSprout = loadImage('Images/PlotSprout.png')
-wateringCan = loadImage('Images/wateringCan.png')
+wateringCan = loadImage('Images/WateringCan.png')
 blueGhost = loadImage('Images/BlueGhost.png')
 }

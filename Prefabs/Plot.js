@@ -10,6 +10,7 @@ class Plot extends Sprite {
         }
         this.state = this.plotState.EMPTY
         this.UpdateFromState()
+        this.SeedType = ""
     }
 
     UpdateFromState() {
@@ -55,12 +56,25 @@ class Plot extends Sprite {
 
         if(this.state == this.plotState.EMPTY && tags.find(tag => tag == "BlueSeed")) {
             this.state = this.plotState.PLANTED
+            this.SeedType = "Blue"
+            this.UpdateFromState()
+        }
+
+        if(this.state == this.plotState.EMPTY && tags.find(tag => tag == "PinkSeed")) {
+            this.state = this.plotState.PLANTED
+            this.SeedType = "Pink"
+            this.UpdateFromState()
+        }
+
+        if(this.state == this.plotState.EMPTY && tags.find(tag => tag == "YellowSeed")) {
+            this.state = this.plotState.PLANTED
+            this.SeedType = "Yellow"
             this.UpdateFromState()
         }
 
         if(this.state == this.plotState.PLANTED && tags.find(tag => tag == "WateringCan")) {
 
-            AddCreature(new Creature(blueGhost, new Vector2(580, 230), new Vector2(0.5, 0.5)))
+            AddCreature(new Creature(GetRandomCreatureSprite(this.SeedType), new Vector2(580, 230), new Vector2(0.5, 0.5)))
 
             this.state = this.plotState.EMPTY
             this.UpdateFromState()
