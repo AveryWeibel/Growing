@@ -12,6 +12,9 @@ let fence
 let blueSeed
 let plotDirt
 let plotFace
+let plotSprout
+let wateringCan
+let blueGhost
 
 function preload() {
     console.log("Hello from preload")
@@ -27,4 +30,7 @@ fence = loadImage('Images/Fence.png')
 blueSeed = loadImage('Images/BlueSeed.png')
 plotDirt = loadImage('Images/PlotDirt.png')
 plotFace = loadImage('Images/PlotFace.png')
+plotSprout = loadImage('Images/PlotSprout.png')
+wateringCan = loadImage('Images/wateringCan.png')
+blueGhost = loadImage('Images/BlueGhost.png')
 }

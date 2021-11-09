@@ -1,0 +1,4 @@
+class Creature extends Sprite {
+
+    
+}

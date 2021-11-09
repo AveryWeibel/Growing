@@ -20,6 +20,8 @@ function setup() {
 
   fenceSprite = new Sprite(fence, new Vector2(0, 90))
 
+  wateringCanSprite = new Sprite(wateringCan, new Vector2(880, 170), new Vector2(.5, .5))
+  wateringCanSprite.tags.push("WateringCan")
 
   //Create game variables
   this.overlapObjectLock = false
@@ -27,10 +29,10 @@ function setup() {
   this.holdObject = null
 
   //Setup overlappable objects
-  GameObjects = [sunSprite, plotDirt1, blueSeedSprite, topBarrelSprite]
+  GameObjects = [sunSprite, plotDirt1, blueSeedSprite, topBarrelSprite, wateringCanSprite]
 
   //Setup renderable
-  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, this.newText, vignetteSprite]
+  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, wateringCanSprite, this.newText, vignetteSprite]
 }
 
 function draw() {

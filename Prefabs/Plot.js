@@ -1,16 +1,42 @@
-class Plot extends Sprite {
+class Plot extends Sprite {    
 
     constructor(_image, _position, _origin = new Vector2(0,0), _tint = color(255, 255, 255) ) {
         super(_image, _position, _origin, _tint)
         this.faceSprite = new Sprite(plotFace, new Vector2(this.position.x + 60, this.position.y + 15))
-        
+        this.sproutSprite = new Sprite(plotSprout, new Vector2(this.position.x + 60, this.position.y))
+        this.plotState = {
+            EMPTY: "empty",
+            PLANTED: "planted"
+        }
+        this.state = this.plotState.EMPTY
+        this.UpdateFromState()
+    }
+
+    UpdateFromState() {
+        switch (this.state) {
+            case this.plotState.EMPTY:
+                this.faceSprite.SetVisible(true)
+                this.sproutSprite.SetVisible(false)
+                break
+            case this.plotState.PLANTED:
+                this.faceSprite.SetVisible(false)
+                this.sproutSprite.SetVisible(true)
+                break
+        }
+
     }
 
     Render() {
         if(this.visible) {
             tint(this.tint)
+            //render dirt
             image(this.image, this.position.x - this.origin.x, this.position.y - this.origin.y)
-            image(this.faceSprite.image, this.faceSprite.position.x - this.faceSprite.origin.x, this.faceSprite.position.y - this.faceSprite.origin.y)
+
+            //Render face
+            this.faceSprite.Render()
+
+            //Render sprout
+            this.sproutSprite.Render()
         }
     }
 
@@ -25,9 +51,16 @@ class Plot extends Sprite {
     }
 
     HandleRectOverlap(InRect) {
+        let tags = InRect.tags
+
+        if(tags.find(tag => tag == "BlueSeed")) {
+            this.state = this.plotState.PLANTED
+            this.UpdateFromState()
+        }
+
         let msg = "Overlap obj "
 
-        InRect.tags.forEach(tag => {
+        tags.forEach(tag => {
             msg += tag
         });
 
