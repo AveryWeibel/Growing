@@ -42,8 +42,8 @@ class Plot extends Sprite {
     }
 
     CheckOverlapRect(InRect) {
-        let res = (abs(( (this.position.x - this.origin.x)  - (InRect.position.x - InRect.origin.x) ) ) * 2 < this.dimensions.x + InRect.dimensions.x) &&
-        (abs(( (this.position.y - this.origin.y) -  (InRect.position.y - InRect.origin.y) ) ) * 2 < this.dimensions.y + InRect.dimensions.y)
+        let res = (abs(( (this.faceSprite.position.x - this.faceSprite.origin.x)  - (InRect.position.x - InRect.origin.x) ) ) * 2 < this.faceSprite.dimensions.x + InRect.dimensions.x) &&
+        (abs(( (this.faceSprite.position.y - this.faceSprite.origin.y) -  (InRect.position.y - InRect.origin.y) ) ) * 2 < this.dimensions.y + InRect.dimensions.y)
         
         if(res)
         this.HandleRectOverlap(InRect)
