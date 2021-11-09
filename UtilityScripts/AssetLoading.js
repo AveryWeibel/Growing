@@ -10,11 +10,15 @@ let topBarrel
 let backgroundSky
 let fence
 let blueSeed
+let pinkSeed
+let yellowSeed
 let plotDirt
 let plotFace
 let plotSprout
 let wateringCan
 let blueGhost
+let pinkGhost
+let yellowGhost
 
 function preload() {
     console.log("Hello from preload")
@@ -28,9 +32,13 @@ topBarrel = loadImage('Images/TopBarrel.png')
 backgroundSky = loadImage('Images/BackgroundSky.png')
 fence = loadImage('Images/Fence.png')
 blueSeed = loadImage('Images/BlueSeed.png')
+pinkSeed = loadImage('Images/PinkSeed.png')
+yellowSeed = loadImage('Images/YellowSeed.png')
 plotDirt = loadImage('Images/PlotDirt.png')
 plotFace = loadImage('Images/PlotFace.png')
 plotSprout = loadImage('Images/PlotSprout.png')
 wateringCan = loadImage('Images/WateringCan.png')
 blueGhost = loadImage('Images/BlueGhost.png')
+pinkGhost = loadImage('Images/PinkGhost.png')
+yellowGhost = loadImage('Images/YellowGhost.png')
 }

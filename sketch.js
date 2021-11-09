@@ -6,9 +6,20 @@ function setup() {
   backgroundSprite = new Sprite(backgroundImage, new Vector2(0, 0))
   backgroundSkySprite = new Sprite(backgroundSky, new Vector2(0, 0))
   vignetteSprite = new Sprite(vignette, new Vector2(0,0))
-  midBarrelSprite = new Sprite(midBarrel, new Vector2(340,270))
-  botBarrelSprite = new Sprite(botBarrel, new Vector2(280, 370))
 
+  //Mid Barrel
+  pinkSeedSprite = new Sprite(pinkSeed, new Vector2(400, 320), new Vector2(0.5, 0.5))
+  pinkSeedSprite.SetVisible(false)
+  pinkSeedSprite.tags.push("PinkSeed")
+  midBarrelSprite = new Barrel(midBarrel, new Vector2(340,270), new Vector2(0, 0), color(255, 255, 255), pinkSeedSprite)
+
+  //Bot Barrel
+  yellowSeedSprite = new Sprite(yellowSeed, new Vector2(380, 430), new Vector2(0.5, 0.5))
+  yellowSeedSprite.SetVisible(false)
+  yellowSeedSprite.tags.push("YellowSeed")
+  botBarrelSprite = new Barrel(botBarrel, new Vector2(280, 370), new Vector2(0, 0), color(255, 255, 255), yellowSeedSprite)
+
+  //Top Barrel
   blueSeedSprite = new Sprite(blueSeed, new Vector2(360, 230), new Vector2(0.5, 0.5))
   blueSeedSprite.SetVisible(false)
   blueSeedSprite.tags.push("BlueSeed")
@@ -28,15 +39,15 @@ function setup() {
   this.holdObject = null
 
   //Setup overlappable objects
-  GameObjects = [sunSprite, plotDirt1, blueSeedSprite, topBarrelSprite, wateringCanSprite]
+  GameObjects = [sunSprite, plotDirt1, blueSeedSprite, pinkSeedSprite, yellowSeedSprite, topBarrelSprite, midBarrelSprite, botBarrelSprite, wateringCanSprite]
 
   //Setup renderable
-  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, midBarrelSprite, botBarrelSprite, blueSeedSprite, topBarrelSprite, wateringCanSprite, vignetteSprite]
+  renderableObjects = [backgroundSkySprite, sunSprite, fenceSprite, backgroundSprite, plotDirt1, blueSeedSprite, pinkSeedSprite, yellowSeedSprite, topBarrelSprite, midBarrelSprite, botBarrelSprite, wateringCanSprite, vignetteSprite]
 
   //Setup creature sprite arrays
   blueCreatureSprites = [blueGhost]
-  pinkCreatureSprites = [blueGhost]
-  yellowCreatureSprites = [blueGhost]
+  pinkCreatureSprites = [pinkGhost]
+  yellowCreatureSprites = [yellowGhost]
   
 }
 
@@ -45,6 +56,12 @@ function GetRandomCreatureSprite(type) {
     case "Blue":
       console.log("Get blue creature sprite")
       return blueCreatureSprites.at(random(blueCreatureSprites.length))
+    case "Pink":
+      console.log("Get pink creature sprite")
+      return pinkCreatureSprites.at(random(pinkCreatureSprites.length))
+    case "Yellow":
+      console.log("Get yellow creature sprite")
+      return yellowCreatureSprites.at(random(yellowCreatureSprites.length))
   }
 }
 
