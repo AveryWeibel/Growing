@@ -2,9 +2,9 @@ function setup() {
   //Create gameobjects
   var cnv = createCanvas(1024, 512);
   frameRate(144)
-  sunSprite = new Sprite(sunImage, new Vector2(105,95), new Vector2(0.5, 0.5))
-  backgroundSprite = new Sprite(backgroundImage, new Vector2(0, 0))
   backgroundSkySprite = new Sprite(backgroundSky, new Vector2(0, 0))
+  sunSprite = new Sun(sunImage, new Vector2(105,95), new Vector2(0.5, 0.5), color(255, 255, 255), backgroundSkySprite)
+  backgroundSprite = new Sprite(backgroundImage, new Vector2(0, 0))
   vignetteSprite = new Sprite(vignette, new Vector2(0,0))
 
   //Mid Barrel
